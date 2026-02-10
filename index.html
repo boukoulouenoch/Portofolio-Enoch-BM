@@ -1,554 +1,1011 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Enoch Boukoulou</title>
-
+    <meta name="description" content="Portfolio d'Enoch Boukoulou - Étudiant en Génie Informatique et Intelligence Artificielle, passionné par la cybersécurité">
+    <title>Enoch Boukoulou | Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
     <style>
-        
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; color: #333; line-height: 1.6; }
-        .site-header { position: fixed; top: 0; width: 100%; z-index: 1000; transition: all 0.3s ease; }
-        .header-container { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: white; }
-        .nav-menu a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; }
-        .site-header.scrolled { background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .site-header.scrolled .logo, .site-header.scrolled .nav-menu a { color: #333; }
-
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: url("https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80") center/cover no-repeat; background-color: #2c3e50; position: relative; color: white; text-align: center; }
-        .hero-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 1; }
-        .hero-content { position: relative; z-index: 2; padding: 20px; }
-        .hero-content h1 { font-size: 3.5rem; margin: 0; }
-
-        main { padding: 40px 20px; max-width: 900px; margin: auto; }
-        section { padding: 80px 0; border-bottom: 1px solid #eee; }
-        h2 { border-left: 5px solid #4CAF50; padding-left: 15px; color: #2c3e50; margin-bottom: 30px; }
-
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .info-card { background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; text-align: center; }
-        .info-card:hover { transform: translateY(-5px); }
-        .info-card img { width: 100%; height: 150px; object-fit: cover; }
-        .card-content { padding: 15px; }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-
-
-        /* transparence header */
-
-
-        
-.site-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: transparent; 
-    transition: all 0.4s ease-in-out; 
-    padding: 20px 0;
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 50px;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white; 
-}
-
-.nav-menu a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-
-.site-header.scrolled {
-    background-color: rgba(255, 255, 255, 0.95); 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 10px 0;
-}
-
-.site-header.scrolled .logo, 
-.site-header.scrolled .nav-menu a {
-    color: #333; 
-}
-
-/* Effet au survol des liens quand le header est solide */
-.site-header.scrolled .nav-menu a:hover {
-    color: #4CAF50;
-}
-
-        /* ===== FOOTER AVEC CONTACT & RÉSEAUX ===== */
-        footer {
-            background-color: #1a1a1a;
-            color: white;
-            padding: 80px 20px 40px;
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --secondary: #1e293b;
+            --text-dark: #0f172a;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .footer-grid {
-            max-width: 1000px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        .site-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: transparent;
+            transition: var(--transition);
+            padding: 1.5rem 0;
+        }
+
+        .site-header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            max-width: 1280px;
             margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
-            flex-wrap: wrap;
-            gap: 50px;
             justify-content: space-between;
+            align-items: center;
         }
 
-        /* Colonne Gauche : Formulaire */
-        .footer-contact {
-            flex: 1;
-            min-width: 300px;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+            transition: var(--transition);
         }
 
-        .footer-contact h2 {
-            color: white;
-            border-left: 5px solid #4CAF50;
-            margin-bottom: 20px;
+        .site-header.scrolled .logo {
+            color: var(--text-dark);
         }
 
-        form { display: grid; gap: 15px; }
-        form input, form textarea { padding: 12px; border: none; border-radius: 4px; width: 100%; box-sizing: border-box; background: #2a2a2a; color: white; }
-        form input::placeholder, form textarea::placeholder { color: #888; }
-        form button { padding: 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 4px; font-weight: bold; transition: 0.3s; }
-        form button:hover { background-color: #45a049; }
-
-        /* Colonne Droite : Réseaux Sociaux */
-        .footer-socials {
-            flex: 1;
-            min-width: 250px;
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
         }
 
-        .footer-socials h2 {
-            color: white;
-            border-left: 5px solid #4CAF50;
-            margin-bottom: 20px;
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
         }
 
-        .social-list {
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .site-header.scrolled .nav-menu a {
+            color: var(--text-dark);
+        }
+
+        .site-header.scrolled .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        /* ===== HERO ===== */
+    
+    .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background: url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000) center/cover no-repeat; 
+    position: relative;
+    overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            color: var(--white);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            object-fit: cover;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary);
+            border-radius: 16px;
+            z-index: -1;
+        }
+
+        .about-content h3 {
+            font-size: 1.75rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.0625rem;
+        }
+
+        /* ===== SKILLS GRID ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .skill-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .skill-list {
             list-style: none;
             padding: 0;
         }
 
-        .social-list li {
-            margin-bottom: 15px;
+        .skill-list li {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9375rem;
+            line-height: 1.6;
         }
 
-        .social-list a {
-            color: #bbb;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: 0.3s;
+        .skill-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* ===== PROJECTS GRID ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
+            justify-content: center;
+            font-size: 3rem;
         }
 
-        .social-list a:hover {
-            color: #4CAF50;
-            transform: translateX(10px);
+        .project-content {
+            padding: 2rem;
         }
 
-        .social-list span {
-            margin-right: 10px;
-            font-size: 1.2rem;
+        .project-content h3 {
+            font-size: 1.375rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
+        .project-content p {
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            font-size: 0.9375rem;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 3rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), rgba(16, 185, 129, 0.2));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 0 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--white), 0 0 0 6px var(--primary);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -8px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -8px;
+        }
+
+        .timeline-content {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-year {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: var(--white);
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.375rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            padding: 1rem 2rem;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .contact-form button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            padding: 0.75rem;
+            border-radius: 8px;
+        }
+
+        .social-link:hover {
+            color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.05);
+            transform: translateX(8px);
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Copyright */
         .copyright {
             text-align: center;
-            margin-top: 60px;
-            font-size: 0.9rem;
-            color: #555;
-            border-top: 1px solid #333;
-            padding-top: 20px;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9375rem;
         }
 
-        /* Responsive */
+        /* ===== ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
 
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            .footer-grid { flex-direction: column; }
-            .header-container { padding: 15px 20px; }
+            .nav-menu {
+                gap: 1.5rem;
+            }
+
+            .nav-menu a {
+                font-size: 0.875rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image::after {
+                display: none;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 2.5rem;
+                padding-right: 0;
+                left: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-item .timeline-dot {
+                left: -8px !important;
+                right: auto !important;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
         }
 
+        @media (max-width: 480px) {
+            .header-container,
+            .container {
+                padding: 0 1rem;
+            }
 
-        /* ===== SECTION À PROPOS ===== */
+            .hero h1 {
+                font-size: 2rem;
+            }
 
-#a-propos {
-    background-color: #3d3d3d; 
-    padding: 120px 20px; 
-    margin: 0;
-}
+            .hero-subtitle {
+                font-size: 1rem;
+            }
 
-.about-container {
-    max-width: 1200px; 
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-}
-
-.about-image {
-    flex: 0 1 45%; 
-    display: flex;
-    justify-content: flex-start; 
-}
-
-.about-image img {
-    width: 100%;
-    max-width: 480px;
-    border-radius: 12px;
-    box-shadow: 15px 15px 50px rgba(0,0,0,0.4);
-    object-fit: cover;
-}
-
-.about-text {
-    flex: 0 1 45%; 
-    text-align: left;
-    padding-left: 20px; 
-}
-
-.about-text h2 {
-    color: #4CAF50;
-    font-size: 2.8rem; 
-    margin-bottom: 30px;
-    line-height: 1.1;
-}
-
-.about-text p {
-    font-size: 1.1rem;
-    color: #e0e0e0;
-    margin-bottom: 20px;
-    line-height: 1.8;
-}
-
-
-@media (max-width: 900px) {
-    .about-container {
-        flex-direction: column;
-        gap: 40px;
-    }
-    .about-image, .about-text {
-        flex: 1;
-        max-width: 100%;
-        text-align: center;
-        padding-left: 0;
-    }
-}
-
-
-@media (max-width: 850px) {
-    .about-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    .about-text {
-        text-align: center;
-    }
-    .about-image {
-        justify-content: center;
-    }
-}
-
-.nav-menu a:hover {
-    color: #4CAF50;
-    border-bottom: 2px solid #4CAF50;
-    padding-bottom: 5px;
-}
+            .btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9375rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">Enoch BOUKOULOU-MAKOSSO</div>
+            <nav class="nav-menu">
+                <a href="#a-propos">À propos</a>
+                <a href="#competences">Compétences</a>
+                <a href="#projets">Projets</a>
+                <a href="#parcours">Parcours</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-<header class="site-header">
-    <div class="header-container">
-        <div class="logo">Portofolio Enoch BOUKOULOU-MAKOSSO</div>
-        <nav class="nav-menu">
-            <a href="#competences">Compétences</a>
-            <a href="#projets">Projets</a>
-            <a href="#Parcours">Formations et Expériences</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </div>
-</header>
-
-<section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1>Étudiant en Informatique</h1>
-        <p>Je m'appelle BOUKOULOU-MAKOSSO Enoch. Je suis actuellement étudiant en 2e année de Génie Informatique et Intelligence Artificielle à l'Ecole Canadienne de Management (ECAM)
-            <br>
-            Je suis Passionné par les métiers de la tech et particulièrement par la cybersécurité et le réseau
-         </p>
-    </div>
-</section>
-
-<main>
-      <!-- section compétences -->
-    <section id="competences">
-        <h2 class="reveal">Compétences</h2>
-        <div class="grid-container">
-            <div class="info-card reveal" style="transition-delay: 0.1s;">
-                <img src="image_reseau.jpg" alt="Image réseau ">
-                <div class="card-content">
-                    <h3>Administration réseau</h3>
-                    <p>1 - Maîtrise de la configuration des routeurs et switches Cisco avec création des Vlan pour les switches en appliquant la sécurité de bases.   
-                    <br>
-                    <br>
-                     2 - Maîtrise du sertissage des câbles réseau RJ45
-                     <br>
-                     <br>
-                     3 - Installation des systèmes d'exploitation Windows et Linux 
-                     <br>
-                     <br>
-                     4 - Maitrise du langage de Scrpits avec le CMD 
-                      <br>
-                      <br>
-                     5 - Installation, maintenance et dépannage d'équipements IT
-                    </p></div>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label">Étudiant en Génie Informatique</div>
+            <h1>Enoch BOUKOULOU-MAKOSSO</h1>
+            <p class="hero-subtitle">Passionné par la cybersécurité et l'intelligence artificielle, je développe des solutions innovantes et sécurisées</p>
+            <div class="hero-cta">
+                <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+                <a href="#contact" class="btn btn-secondary">Me contacter</a>
             </div>
-            <div class="info-card reveal" style="transition-delay: 0.3s;">
-                <img src="dev_web.png" alt="Image dev web">
-                <div class="card-content"><h3>développement web </h3>
-                    <p>
-                         1 - Connaissances avancées en PostgreSQL pour l'administration des bases de données 
-                         <br>
-                         <br>
-                         2 - Connaissances en php, python et flask pour le backend
-                         <br>
-                         <br>
-                         3 - Connaissances de base en HTML et CSS pour le frontend
-                    </p>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="a-propos">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Qui suis-je</span>
+                <h2 class="section-title">À propos de moi</h2>
+            </div>
+            <div class="about-grid reveal">
+                <div class="about-image">
+                    <img src="Image_principale.jpeg" alt="Enoch Boukoulou">
                 </div>
-            </div>
-            <div class="info-card reveal" style="transition-delay: 0.5s;">
-                <img src="soutein_scolaire.jpg" alt="Image soutien scolaire">
-                <div class="card-content"><h3>Soutien scolaire (Mathématiques, Physique-chimie)</h3>
-                    <p>
-                        1 - Soutien scolaire et aide aux devoirs
-                        <br>
-                        <br>
-                        2 - Encadrement pédagogique d'élèves
-                        <br>
-                        <br>
-                        3 - Méthodes d'enseignement au niveau de l'apprenant 
-                
-                    </p>
+                <div class="about-content">
+                    <h3>Enoch BOUKOULOU-MAKOSSO</h3>
+                    <p>Passionné par l'informatique depuis mes débuts, j'ai consacré mon parcours à comprendre les rouages du web et de la sécurité des systèmes. Mon approche repose sur une curiosité constante et une volonté de résoudre des problèmes complexes.</p>
+                    <p>J'ai beaucoup appris jusque-là et je suis reconnaissant aux écoles et aux formateurs qui m'ont donné ce niveau que j'ai. Je veux encore apprendre plus et me concentrer principalement pour la suite de mes études dans la cybersécurité.</p>
+                    <p>Mon objectif est de devenir expert en cybersécurité ou RSSI (Responsable de la Sécurité des Systèmes d'Information). Je compte poursuivre mes études jusqu'au BAC+5.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- section projets -->
+    <!-- ===== SKILLS ===== -->
+    <section id="competences" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Mes compétences</span>
+                <h2 class="section-title">Compétences</h2>
+                <p class="section-description">Un aperçu de mes principales compétences techniques et professionnelles</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card reveal">
+                    <div class="skill-icon">🌐</div>
+                    <h3>Administration Réseau</h3>
+                    <ul class="skill-list">
+                        <li>Configuration de routeurs et switches Cisco avec création de VLANs et sécurité de base</li>
+                        <li>Sertissage de câbles réseau RJ45</li>
+                        <li>Installation de systèmes d'exploitation Windows et Linux</li>
+                        <li>Maîtrise du langage de scripts avec CMD</li>
+                        <li>Installation, maintenance et dépannage d'équipements IT</li>
+                    </ul>
+                </div>
 
-    <section id="projets" class="reveal">
-        <h2>Projets</h2>
-        <div class="grid-container">
-            <div class="info-card reveal" style="transition-delay: 0.1s;">
-                <img src="access.jpg" alt="Web">
-                <div class="card-content">
-                    <h3> Création d'une base de donnée locale</h3>
-                    <p>En première année j'ai créé une base de données entièrement fonctionnelle avec Microsoft Office Word
-                        <br>
-                        Cette base donnée destinée aux Infrastructures scolaires pouvait enrégister les élèves selon leur classe,
-                        oraniser les notes mais surtout calculer automatiquement les moyennes des élèves par selon la classe en donnant
-                        l'ordre de mérite.
-                        Cette base de données a été nommée <strong>"NotePilot"</strong>
-                    </p>
+                <div class="skill-card reveal" style="transition-delay: 0.1s;">
+                    <div class="skill-icon">💻</div>
+                    <h3>Développement Web</h3>
+                    <ul class="skill-list">
+                        <li>Connaissances avancées en PostgreSQL pour l'administration des bases de données</li>
+                        <li>Connaissances en PHP, Python et Flask pour le backend</li>
+                        <li>Connaissances en HTML, CSS et JavaScript pour le frontend</li>
+                        <li>Développement d'applications web modernes et responsives</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card reveal" style="transition-delay: 0.2s;">
+                    <div class="skill-icon">📚</div>
+                    <h3>Soutien Scolaire</h3>
+                    <ul class="skill-list">
+                        <li>Soutien scolaire en mathématiques et physique-chimie</li>
+                        <li>Aide aux devoirs et préparation aux examens (BEPC, BAC)</li>
+                        <li>Encadrement pédagogique d'élèves</li>
+                        <li>Méthodes d'enseignement adaptées au niveau de l'apprenant</li>
+                    </ul>
                 </div>
             </div>
-            <div class="info-card reveal" style="transition-delay: 0.3s;">
-                <img src="logiciel.png" alt="Image dev application">
-                <div class="card-content"><h3>Logiciel scolaire et capteurs thermique</h3>
-                    <p>
-                        Je travaille également sur mon logiciel scolaire qui est une version améliorée de la base de données 
-                        créée avec Access. Il sera sous forme d'application web et aura des fonctionnalités bien sur avancées, 
-                        utiles et modernes.
-                    </p>
-                    <p>
-                        Par ailleurs j'ai été dans la conception d'un capteurs thermique avec géolocalisation afin d'implanter cette technologie
-                        dans un bracelet pour les attacher à des animaux de fermes. Le projet étant suspendu forte de moyen financiers, j'ai à coeur
-                        à le redonner vie dans les plus brefs délais.
-                    </p>
-                </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projets">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Réalisations</span>
+                <h2 class="section-title">Mes Projets</h2>
+                <p class="section-description">Découvrez quelques-uns des projets sur lesquels j'ai travaillé, allant du développement web à l'électronique et la cybersécurité</p>
             </div>
-            <div class="info-card reveal" style="transition-delay: 0.5s;">
-                <img src="backend.png" alt="Sécurité">
-                <div class="card-content"><h3>Site web NovaLearn</h3>
-                    <p>
-                        Actuellement, je suis dans un projet de construction d'un site web qui est une plateforme étudiante.
-                        Je suis dans l'équipe qui s'occupe du backend. J'ai dans un premier temps créer le backend de ce site en utilisant
-                        Flask et PostgreSQL pour la database. Etant donné que le formateur tient aussi à ce que je le fass en php alors je m'y suis 
-                        mis tout en gardant PostgreSQL pour ma base de données.
-                    </p>
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <h3>Sites Web</h3>
+                        <p>Développement de sites web modernes et responsives et des sites vitrines pour diverses entreprises.</p>
+                        <p>Technologies utilisées : HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" style="transition-delay: 0.2s;">
+                    <div class="project-image">💾</div>
+                    <div class="project-content">
+                        <h3>Base de Données Access</h3>
+                        <p>Création d'une base de données complète avec Access pour la gestion scolaire, incluant la gestion des élèves, notes et bulletins.</p>
+                        <p>Évolution prévue vers une application web moderne.</p>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" style="transition-delay: 0.3s;">
+                    <div class="project-image">📚</div>
+                    <div class="project-content">
+                        <h3>Logiciel Scolaire</h3>
+                        <p>Développement d'un logiciel de gestion scolaire moderne sous forme d'application web avec des fonctionnalités avancées et une interface intuitive.</p>
+                        <p>En cours de développement avec des technologies web modernes.</p>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" style="transition-delay: 0.4s;">
+                    <div class="project-image">🌡️</div>
+                    <div class="project-content">
+                        <h3>Capteur Thermique IoT</h3>
+                        <p>Conception d'un capteur thermique avec géolocalisation destiné à être intégré dans des bracelets pour animaux de ferme.</p>
+                        <p>Projet suspendu, à relancer prochainement avec des améliorations.</p>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" style="transition-delay: 0.5s;">
+                    <div class="project-image">🎓</div>
+                    <div class="project-content">
+                        <h3>NovaLearn Platform</h3>
+                        <p>Développement backend d'une plateforme étudiante avec Flask et PostgreSQL, puis migration vers PHP tout en conservant PostgreSQL.</p>
+                        <p>Travail en équipe sur un projet complexe de plateforme éducative.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-        <!-- section parcours -->
+    <!-- ===== TIMELINE ===== -->
+    <section id="parcours">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Mon parcours</span>
+                <h2 class="section-title">Formations & Expériences</h2>
+                <p class="section-description">De mes études au baccalauréat jusqu'à mes expériences professionnelles actuelles</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023 - 2024</div>
+                        <h3>Baccalauréat série C</h3>
+                        <p>Obtention du Baccalauréat en Mathématiques avec mention Assez Bien (12,65/20).</p>
+                        <p>Diplôme de Major Terminal avec une moyenne annuelle de 13,48. Classé premier parmi les trois classes de terminale.</p>
+                    </div>
+                </div>
 
-      <section id="Parcours">
-        <h2 class="reveal">Formations et Expériences</h2>
-        <div class="grid-container">
-            <div class="info-card reveal" style="transition-delay: 0.1s;">
-                <img src="annee2024.png" alt="Image 2024">
-                <div class="card-content"><h3> 2023 - 2024: Obtention du Baccalauréat</h3>
-                    <p>
-                        J'ai obtenu le baccalauréat 2024 en série C Mathématiques avec une moyenne de 12,65 pour une mention assez bien.
-                        Durant cette même j'ai obtenu mon diplôme de Major Terminal de la classe de terminale car j'étais le 1er des trois
-                        terminale à savoir: La terminale D et la terminale A4. J'avais donc obtenu une moyenne annuelle de 13,48
-                    </p>
-                    <p>
-                        Par ailleurs, j'avais aussi été admis au baccalauréat blanc avec une moyenne de 12,70. J'avais également atteint la moyenne
-                        de 13,?? au deuxième trimestre et 14,03 au 1er trimestre. 
-                    </p>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024 - 2025</div>
+                        <h3>1ère année - Génie Informatique et Télécommunications</h3>
+                        <p>Formation à l'Université Privée de Loango avec acquisition de connaissances en réseaux informatiques, bases de données, électronique analogique et architecture des ordinateurs.</p>
+                        <p>Résultats : 14,06/20 au premier semestre, 12,07/20 au deuxième semestre.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="info-card reveal" style="transition-delay: 0.3s;">
-                <img src="annee2025.png" alt="Image 2025">
-                <div class="card-content"><h3>2024 - 2025: 1re année de Génie Informatique et TELécommunications <br>
-                2025 - 2026: 2e année de Génie Informatique et Intelligence Artificielle</h3>
-                    <p>
-                        Durant l'année 2024 - 2025, j'ai effectué ma première année universitaire au sein de l'université 
-                        privée de Loango. Dans cet établissement, j'ai acquis des connaissances solides notamment en réseau 
-                        informatique, langage de script, en base de données et des connaisances en électronique analogique, 
-                        maintenance et dépannage des ordinateurs, en architecture des ordnateurs.
-                        Ma première au sein de cette université m'a été enrichissante. Cependant, durant cette première année
-                        j'ai obtenu une moyenne de 14,06 au premier semestre et 12,07 au deuxième avant rattrapage
-                    </p>
-                    <p>
-                        Pour l'année en cours, il n'y a encore aucune donnée concrète dont je puisse faire part pour le moment. 
-                        Mais ma détermination ne change pas et je suis prêt à rélever de nouveaux défits
-                    </p>
-                    <img src="annee2026.png" alt="Image 2026">
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025 - 2026</div>
+                        <h3>2ème année - Génie Informatique et Intelligence Artificielle</h3>
+                        <p>Poursuite de mes études avec une spécialisation en Intelligence Artificielle, approfondissement des compétences en développement et en cybersécurité.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="info-card reveal" style="transition-delay: 0.5s;">
-                <img src="technicien.png" alt="Image technicien">
-                <div class="card-content"><h3>Expériences</h3>
-                    <p>
-                        Durant ma première année d'étude je suis parvenu à trouver un stage de 07 mois au sein d'une entreprise
-                        de prestation informatique appelée <strong>ITPRO Congo</strong> dans laquelle j'ai beaucoup appris.
-                        Mon stage se basait sur le support IT. Ma mission consistait généralement à aller sur le terrain pour faire 
-                        du helpdesk. Je suis intervenu chez SAT Congo et K-Chimie notamment pour des problèmes de dépannage sur des 
-                        outils IT ou pour la réorganisation d'un parc informatique
-                    </p>
-                    <p>
-                        J'ai également créé un site web en freelance pour un particlier. Il s'agissait d'un site d'orientation scolaire
-                    </p>
-                    <p>
-                        Actuellement je fais du soutien scolaire pour des enfants qui préparent leur BEPC et leur BAC également. J'élabore
-                        donc des programmes adaptés au besoin de chaque apprenants tout en les mainteant en état d'examen constant
-                    </p>
-                    <p>
-                        Enfin, j'ai effectué des prestations dans une école appelée <strong> Institut Henri Lopes</strong> au sein de laquelle
-                        ma mission consistait à saisir les différents sujets pour les évaluations et les imprimer. 
-                    </p>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">Stage - 7 mois</div>
+                        <h3>ITPRO Congo - Support IT</h3>
+                        <p>Stage en entreprise de prestation informatique, spécialisé en support IT et helpdesk terrain.</p>
+                        <p>Interventions chez SAT Congo et K-Chimie pour dépannage d'outils IT et réorganisation de parcs informatiques.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">Freelance</div>
+                        <h3>Développeur Web & Formateur</h3>
+                        <p>Création de sites web en freelance, notamment un site d'orientation scolaire.</p>
+                        <p>Soutien scolaire pour élèves préparant le BEPC et le BAC avec élaboration de programmes adaptés.</p>
+                        <p>Prestations à l'Institut Henri Lopes pour la saisie et l'impression de sujets d'évaluation.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-</main>
 
-    <!-- section à propos -->
-<section id="a-propos" class="reveal">
-    <div class="about-container">
-        <div class="about-image">
-            <img src="Image_principale.jpeg" alt="Enoch Boukoulou">
+    <!-- ===== FOOTER ===== -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid reveal">
+                <div class="footer-section">
+                    <h3>Me contacter</h3>
+                    <form class="contact-form" action="https://formspree.io/f/mzdazrqq" method="POST">
+                        <input type="text" name="nom" placeholder="Votre nom" required>
+                        <input type="email" name="_replyto" placeholder="Votre email" required>
+                        <textarea name="message" placeholder="Votre message" required></textarea>
+                        <input type="hidden" name="_subject" value="Nouveau message depuis le Portfolio">
+                        <button type="submit">Envoyer le message</button>
+                    </form>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Réseaux sociaux</h3>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/enoch-boukoulou-makosso-2b7196382" target="_blank" class="social-link">
+                            <span class="social-icon">🔗</span>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/boukoulouenoch" target="_blank" class="social-link">
+                            <span class="social-icon">💻</span>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="mailto:enochboukoulou06@gmail.com" class="social-link">
+                            <span class="social-icon">📧</span>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2026 Enoch Boukoulou-Makosso. Tous droits réservés.</p>
+            </div>
         </div>
+    </footer>
 
-        <div class="about-text">
-            <h2>En savoir un peu plus sur <strong>Enoch BOUKOULOU-MAKOSSO</strong></h2>
-            <p>
-                Passionné par l'informatique depuis mes débuts, j'ai consacré mon parcours à 
-                comprendre les rouages du web et de la sécurité des systèmes. Mon approche 
-                repose sur une curiosité constante et une volonté de résoudre des problèmes complexes.
-            </p>
-            <p>
-               J'ai beaucoup appris jusque là et je suis reconnaissant aux écoles et aux formateurs qui m'ont donnné
-               ce niveau que j'ai. Je veux encore apprendre plus et me concentrer principalement pour la suite de mes études 
-               dans la cybersécurité et un jour devenir expert en cybersécurité ou RSSI (Responsable de la Sécurité des systèmes d'Information)
-               Je compte aller jusqu'au BAC+5 pour la suite de mes études.
-            </p>
-        </div>
-    </div>
-</section>
-
-    <!-- section footer -->
-
-<footer id="contact">
-    <div class="footer-grid reveal">
-        <div class="footer-contact">
-            <h2>Me contacter</h2>
-            <form action="https://formspree.io/f/mzdazrqq" method="POST">
-    <input type="text" name="nom" placeholder="Votre Nom" required>
-    <input type="email" name="_replyto" placeholder="Votre Email" required>
-    <textarea name="message" placeholder="Votre message..." rows="4" required></textarea>
-    <input type="hidden" name="_subject" value="Nouveau message depuis mon Portfolio">
-    <button type="submit">Envoyer le message</button>
-</form>
-        </div>
-
-        <div class="footer-socials">
-            <h2>Réseaux sociaux</h2>
-            <ul class="social-list">
-                <li><a href="https://linkedin.com/in/enoch-boukoulou-makosso-2b7196382" target="_blank"><span>🔗</span> Découvrez moi sur LinkedIn</a></li>
-                <li><a href="https://github.com/boukoulouenoch" target="_blank"><span>💻</span>Consultez mes projets sur GitHub</a></li>
-                <li><a href="mailto:enochboukouloum@gmail.com"><span>📧</span>Laissez moi un mail directement </a></li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="copyright">
-        <p>&copy; 2026 - Portfolio Enoch BOUKOULOU-MAKOSSO. Tous droits réservés.</p>
-    </div>
-</footer>
-
-<script>
-
-    // Header changeant au scroll
-
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('.site-header');
-        header.classList.toggle('scrolled', window.scrollY > 80);
-    });
-
-    // Animation au scroll
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.site-header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
         });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach((el) => {
-        observer.observe(el);
-    });
+        // Reveal animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    // fluidité du scroll
-
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
         });
-    });
 
-    //  Message de confirmation après envoi
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-if (window.location.search.includes('sent=true')) {
-    alert('Merci ! Votre message a bien été envoyé.');
-}
-</script>
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
 
+        // Form submission feedback
+        const form = document.querySelector('.contact-form');
+        form.addEventListener('submit', function(e) {
+            const button = form.querySelector('button');
+            button.textContent = 'Envoi en cours...';
+            button.disabled = true;
+        });
+    </script>
 </body>
 </html>
